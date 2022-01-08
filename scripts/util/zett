@@ -1,0 +1,94 @@
+#!/bin/bash
+
+basedir="$HOME/notebook/zettelkasten"
+notes="$basedir/notes"
+imgdir="$basedir/notes/imgs"
+imgtmp="$basedir/imgtmp"
+drafts="$basedir/drafts"
+meta="$basedir/meta"
+[ -z "$EDITOR" ] && EDITOR="vim"
+
+new_draft() {
+	read draft_id < "$meta/notecount"
+	echo $((draft_id + 1)) > "$meta/notecount"
+	note="$drafts/$draft_id.zett"
+	echo "" >> "$note"
+	echo "" >> "$note"
+	echo "**Mentioned in:**" >> "$note"
+	echo "" >> "$note"
+	"$EDITOR" "$note"
+}
+
+finish() {
+	note_id=$(echo "$1" | rev | cut -d "/" -f 1 | rev | cut -d "." -f 1)
+	title=$(get_title $1)
+	grep -Eo "\[\[[^][]*\|([^][]*)\]\]" "$1" | while read ref_id ; do
+		ref_id=$(echo $ref_id | sed -E "s/\[\[.*\|(.*)\]\]/\1/")
+		ref="$notes/$ref_id.zett"
+		exists=$(grep -E "\[\[[^][]*\|$note_id\]\]" "$ref")
+		if [ ! -z "$ref" ] && [ -z "$exists" ]
+		then
+			echo "- [[$title|$note_id]]" >> "$ref"
+			compile_zett "$ref" "$notes/$ref_id.md" $ref_id
+			compilenotebook "$notes/$ref_id.md"
+		fi
+	done
+	grep -Eo "\(\(([^\(\)]*)\)\)" $1 | while read img_ref ; do
+		img=$(echo $img_ref | sed -E "s/\(\((.*)\)\)/\1/")
+		exists=$(grep "(imgs/$note_id-$img)" "$2")
+		if [ ! -z "$img" ] && [ -z "$exists" ]
+		then
+			mv "$imgtmp/$img" "$imgdir/$note_id-$img"
+		fi
+	done
+	compile_zett "$1" "$notes/$note_id.md" $note_id
+	mv "$1" "$notes/$note_id.zett" 2>/dev/null
+	compilenotebook "$notes/$note_id.md"
+}
+
+redo() {
+	note=$(find "$notes/$1.zett" -type f)
+	if [ ! -z "$note" ]
+	then
+		note_id=$(echo "$note" | rev | cut -d "/" -f 1 | rev | cut -d "." -f 1)
+		"$EDITOR" "$note"
+		finish "$note" "$notes/$note_id.md"
+	fi
+}
+
+compile_zett() {
+	sed -Ee "s/\[\[([^][]*)\|([^][]*)\]\]/\[\1\](\2.md.html)/g" -e "s/\(\(([^\(\)]*)\)\)/\!\[\]\(imgs\/$3-\1\)/g" $1 > $2
+}
+
+get_title() {
+	title=$(grep -E -m 1 "^#" $1 | sed 's/#//g')
+	if [ -z "$title" ]
+	then
+		echo "Untitled"
+	else
+		echo $title
+	fi
+}
+
+list() {
+	printf "Listing drafts:\\n"
+	case $(ls $drafts | grep -E ".zett$" | wc -l) in
+		0) echo "No drafts found" && exit 1 ;;
+		1) nr=1 && echo "Only one entry found, defaulting to: $(get_title $(find $drafts -type f))" ;;
+		*) find $drafts -type f | grep -E ".zett$"| while read title ; do echo $(get_title $title) ; done | nl
+		read -erp "Select draft to $1: " number ;;
+	esac
+	selected=$(find $drafts -type f | grep -E ".zett$" | nl | grep -w " $number" | awk '{print $2}')
+	if [ -z $selected ]
+	then
+		echo "Invalid selection" && exit 1
+	fi
+}
+
+case "$1" in
+	n*) new_draft ;;
+	e*) list edit && $EDITOR $selected ;;
+	f*) list finish && finish $selected $selected;;
+	r*) redo $2 ;;
+	*) printf "Zettelkasten note maker\\nUsage:\\n  zett n:       new draft\\n  zett e:       edit draft\\n  zett f:       finish draft\\n  zett r {id}:  rewrite a note\\n" ;;
+esac

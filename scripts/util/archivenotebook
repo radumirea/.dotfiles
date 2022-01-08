@@ -1,0 +1,6 @@
+#!/bin/bash
+
+destination="$HOME/media/archives/notebook.tgz.gpg"
+
+cd "$HOME"
+tar cz "notebook" | gpg -c -o "$destination"

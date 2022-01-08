@@ -1,0 +1,76 @@
+body{
+    color: #bbc0c5;
+    font-size: 1.2em;
+    font-weight: 400;
+    background: #282828;
+    max-width: 87%;
+    margin: auto;
+    padding: 1em 1em 150px;
+}
+
+a{
+    color: #84ceeb;
+}
+
+a:hover{
+    color: indianred;
+}
+
+h1{
+    color: #d75d0d;
+}
+
+h2{
+    color: #d79920;
+}
+
+h3{
+    color: #979619;
+}
+
+h4{
+    color: #689d6a;
+}
+
+pre{
+    min-width: 200px;
+    border-radius: 4px;
+    background-color: #3b3b3b;
+    padding: 10px;
+}
+
+code{
+    background-color: #3b3b3b;
+}
+
+img{
+    padding: 1.3em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even){
+    background-color: #333;
+}
+table tr:nth-child(odd){
+    background-color: #222;
+}
+
+table tr {
+    color: white;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #999;
+    color: black;
+}
