@@ -12,5 +12,5 @@ alias tmpconfig='/usr/bin/git --git-dir=$HOME/tmpdot/.cfg/ --work-tree=$HOME/tmp
 tmpconfig checkout
 tmpconfig config --local status.showUntrackedFiles no
 cp -r ~/tmpdot ~
-rm -r ~/tmpdot
+rm -rf ~/tmpdot
 ```
