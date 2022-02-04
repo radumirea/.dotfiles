@@ -11,6 +11,7 @@ export EDITOR=vim
 
 alias vim='nvim'
 alias ls='ls --color=auto'
+alias feh='feh --scale-down'
 alias music='tmux new-session -s $$ "tmux source-file ~/.ncmpcpp/tsession"' 
 function cheat(){ curl cheat.sh/"$@"; }
 _trap_exit() { tmux kill-session -t $$; } 

@@ -6,12 +6,12 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-*.alpha: 0.8
+*.alpha: 0.6
 
 /*some exported theme*/
 /* special */
 *.foreground: #c5c8c6
-*.background: #151515
+*.background: #0f0f0f
 *.cursorColor: #c5c8c6
 /* black */
 *.color0: #282a2e
