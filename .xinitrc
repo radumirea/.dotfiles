@@ -4,6 +4,8 @@ redshift &     #night light
 dunst &	       #osd daemon
 autorandr --change 	#change to detected display configuration
 synclient TouchpadOff=1	#turn off touchpad
+mpd &
+[[ -z $(pgrep -xU $UID mpdscribble) ]] && mpdscribble &
 
 #fix for some windows to display properly
 export _JAVA_AWT_WM_NONREPARENTING=1 

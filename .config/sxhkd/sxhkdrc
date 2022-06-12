@@ -22,6 +22,9 @@ alt + ctrl + h
 alt + ctrl + h
 	systemctl poweroff
 
+alt + shift + p
+	mpc toggle
+
 alt + F1
 	pactl set-sink-mute 0 toggle ; ~/scripts/osd/volume.sh +0%
 

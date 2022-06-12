@@ -6,7 +6,7 @@ imgdir="$basedir/notes/imgs"
 imgtmp="$basedir/imgtmp"
 drafts="$basedir/drafts"
 meta="$basedir/meta"
-[ -z "$EDITOR" ] && EDITOR="vim"
+[ -z "$EDITOR" ] && EDITOR="nvim"
 
 new_draft() {
 	read draft_id < "$meta/notecount"

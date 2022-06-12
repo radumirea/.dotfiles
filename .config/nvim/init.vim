@@ -6,8 +6,10 @@ set number relativenumber
 set scrolloff=5
 set spelllang=en
 set clipboard+=unnamedplus
+"lnebreak on space characters
+set linebreak
 
-inoremap jh <Esc>
+inoremap jk <Esc>
 map <tab> %
 "center the screen when searching
 nnoremap n nzzzv
