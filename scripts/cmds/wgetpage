@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wget --no-directories --no-host-directories --page-requisites --no-parent --convert-links --adjust-extension --span-hosts -e robots=off $1

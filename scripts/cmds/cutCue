@@ -1,0 +1,17 @@
+#!/bin/bash
+
+flac=*
+cue=*
+if [ -z "$1" ]
+  then
+    flac=$1
+fi
+if [ -z "$2" ]
+  then
+    cue=$2
+fi
+
+shnsplit -f ${cue}.cue -t %n-%t -o flac ${flac}.flac
+rm ${flac}.flac
+cuetag.sh ${cue}.cue ${flac}.flac
+rm ${cue}.cue
