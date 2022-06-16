@@ -8,6 +8,17 @@ set spelllang=en
 set clipboard+=unnamedplus
 "lnebreak on space characters
 set linebreak
+"save changes dialogue on error
+set confirm
+"enable mouse pointing
+set mouse=a
+"enable line highlighting
+set cursorline
+hi clear
+hi CursorLine cterm=NONE ctermbg=black
+hi CursorLineNr cterm=NONE ctermbg=black
+hi LineNr ctermfg=darkGray
+hi StatusLine cterm=bold ctermbg=black ctermfg=gray
 
 inoremap jk <Esc>
 map <tab> %
@@ -17,6 +28,8 @@ nnoremap N Nzzzv
 "easier jump to start/end of line
 noremap H ^
 noremap L g_
+noremap <S-j> <C-d>
+noremap <S-k> <C-u>
 
 "reopen the file on the same line
 augroup line_return
@@ -26,3 +39,19 @@ augroup line_return
 	\ execute 'normal! g`"zvzz' |
 	\ endif
 augroup END
+
+"plugin setup
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin(stdpath('data') . '/plugged')
+  Plug 'karb94/neoscroll.nvim'
+  Plug 'ap/vim-css-color'
+call plug#end()
+
+lua require('config')
+
+

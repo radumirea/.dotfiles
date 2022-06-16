@@ -1,0 +1,9 @@
+#!/bin/bash
+#binds used in ~/.bashrc
+
+#bash autocomplete config
+bind 'set completion-ignore-case on'
+bind '"\e[Z": menu-complete' #Shift + Tab to cycle options
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+

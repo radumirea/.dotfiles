@@ -5,19 +5,19 @@ alt + shift + i
 	networkmanager_dmenu 2> /dev/null
 
 alt + s
-        ~/scripts/screenshot.sh
+        scrot -z ~/media/pictures/screenshots/
 
 alt + shift + s
-	scrot -s --silent ~/media/pictures/screenshots/
+	scrot -s -z ~/media/pictures/screenshots/
 
 alt + shift + x
-	~/scripts/util/lock.sh
+	lock
 
 alt + ctrl + s
-	~/scripts/util/lock.sh ; systemctl suspend
+	lock ; systemctl suspend
 
 alt + ctrl + h
-	~/scripts/util/lock.sh ; systemctl hibernate
+	lock ; systemctl hibernate
 
 alt + ctrl + h
 	systemctl poweroff
@@ -26,25 +26,25 @@ alt + shift + p
 	mpc toggle
 
 alt + F1
-	pactl set-sink-mute 0 toggle ; ~/scripts/osd/volume.sh +0%
+	pactl set-sink-mute 0 toggle ; ~/scripts/util/osd/volume.sh +0%
 
 alt + F2
-	~/scripts/osd/volume.sh -5%
+	~/scripts/util/osd/volume.sh -5%
 
 alt + F3
-	~/scripts/osd/volume.sh +5%
+	~/scripts/util/osd/volume.sh +5%
 
 alt + button5
-	~/scripts/osd/volume.sh -5%
+	~/scripts/util/osd/volume.sh -5%
 
 alt + button4
-	~/scripts/osd/volume.sh +5%
+	~/scripts/util/osd/volume.sh +5%
 
 alt + F5
-	~/scripts/osd/brightness.sh -dec 5
+	~/scripts/util/osd/brightness.sh -dec 5
 
 alt + F6
-	~/scripts/osd/brightness.sh -inc 5
+	~/scripts/util/osd/brightness.sh -inc 5
 
 alt + F11
-	~/scripts/util/toggle_touchpad.sh
+	toggle_touchpad

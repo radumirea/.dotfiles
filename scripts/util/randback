@@ -1,4 +1,0 @@
-#!/bin/bash
-
-image=`find ~/media/pictures/background/ -type f | sort -R | tail -1`
-DISPLAY=:0 feh --bg-fill "$image"
