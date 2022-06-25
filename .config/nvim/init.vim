@@ -37,9 +37,6 @@ noremap <S-k> <C-u>
 map <silent><leader>o :set spell!<CR>
 "disables automatic commenting on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-"run xrdb whenever Xdefaults or Xresources are updated.
-autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
-autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
 "set specific file interpretation
 autocmd BufRead,BufNewFile ~/.zettgo/* set filetype=markdown
 

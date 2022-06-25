@@ -1,15 +1,24 @@
 #!/bin/bash
 #aliases sourced in .bashrc
 
+#convenience
 alias vim='nvim'
-alias ls='ls --color=auto'
 alias feh='feh --scale-down'
-alias music='tmux new-session -s $$ "tmux source-file ~/.ncmpcpp/tsession"' 
-function cheat(){ curl cheat.sh/"$@"; }
-_trap_exit() { tmux kill-session -t $$; } 
-#alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias addconfig="config add -u"
+alias ls='ls --color=auto'
 alias mktar="tar -cf"
 alias untar="tar -xf"
 alias less="less.sh"
+
+#ncmpcpp setup
+alias music='tmux new-session -s $$ "tmux source-file ~/.ncmpcpp/tsession"' 
+_trap_exit() { tmux kill-session -t $$; } 
+
+#dotfile management
+alias dotup="rm ~/.cfg/index && cat ~/scripts/resources/git/dot_list | xargs -I@ sh -c 'dotgit add @'"
+alias dotli="$EDITOR ~/scripts/resources/git/dot_list"
+
+#cheatsheet in terminal
+function cheat(){ curl cheat.sh/"$@"; }
+
+#misc
 alias tzettgo="~/files/bin/go/bin/zettgo --basedir '~/.zettgo_test/'"

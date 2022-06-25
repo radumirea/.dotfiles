@@ -5,17 +5,23 @@ export PATH=$PATH:~/scripts/cmds:~/.local/bin:.
 export GPG_TTY=$(tty)
 export EDITOR=nvim
 export VISUAL=nvim
+export BROWSER=brave
+export LANG=en_US.UTF-8
+export MUSIC_DIR=~/media/mounts/ADATA\ SD600/music
+
 #colors for less
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
 export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
-export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
-export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
+export LESS_TERMCAP_me=$(printf '\e[0m')     # turn off all appearance modes (mb, md, so, us)
+export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
+
 #unlimited bash history
 export HISTFILESIZE=-1
 export HISTSIZE=-1
 export HISTTIMEFORMAT="%F %T "
 export HISTFILE=~/files/logs/bash_history
 export PROMPT_COMMAND="history -a"
+
 #prompt
 export PS1="\[$(tput bold)\]\[\033[38;5;9m\][\[$(tput sgr0)\]\[\033[38;5;214m\]\u\[$(tput sgr0)\]\[\033[38;5;100m\]:\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;61m\]\W\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;9m\]]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
