@@ -1,0 +1,15 @@
+~/scripts/*
+~/.bashrc
+~/.bash_profile
+~/.xinitrc
+~/.Xresources
+~/.tmux.conf
+~/.ncmpcpp/*
+~/.config/bash/*
+~/.config/nvim/*
+~/.config/sxhkd/*
+~/.config/go/*
+~/.config/feh/*
+~/.config/cava/*
+~/.config/ranger/*
+~/.config/mpd/mpd.conf

@@ -7,9 +7,9 @@ alias feh='feh --scale-down'
 alias music='tmux new-session -s $$ "tmux source-file ~/.ncmpcpp/tsession"' 
 function cheat(){ curl cheat.sh/"$@"; }
 _trap_exit() { tmux kill-session -t $$; } 
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+#alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias addconfig="config add -u"
 alias mktar="tar -cf"
 alias untar="tar -xf"
 alias less="less.sh"
-
+alias tzettgo="~/files/bin/go/bin/zettgo --basedir '~/.zettgo_test/'"

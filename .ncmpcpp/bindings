@@ -1,0 +1,15 @@
+#some vim bindings
+
+def_key "j"
+    scroll_down
+def_key "k"
+    scroll_up
+def_key "g"
+  move_home
+def_key "G"
+  move_end
+
+#misc
+def_key "`"
+  refetch_lyrics
+

@@ -1,17 +1,22 @@
 #!/bin/bash
 
-flac=*
-cue=*
-if [ -z "$1" ]
-  then
-    flac=$1
+flac=$(find -maxdepth 1 -name '*.flac')
+cue=$(find -maxdepth 1 -name '*.cue')
+
+if [ 1 -gt $(echo $flac | wc -l) ]; then
+  echo "Multiple flac files found - choose a single one"
+  exit
 fi
-if [ -z "$2" ]
-  then
-    cue=$2
+if [ 1 -gt $(echo $cue | wc -l) ]; then
+  echo "Multiple cue files found - choose a single one"
+  exit
 fi
 
-shnsplit -f ${cue}.cue -t %n-%t -o flac ${flac}.flac
-rm ${flac}.flac
-cuetag.sh ${cue}.cue ${flac}.flac
-rm ${cue}.cue
+if [ ! -z "$1" ]; then
+  flac=${1}.flac
+fi
+if [ ! -z "$2" ]; then
+  cue=${2}.cue
+fi
+
+shnsplit -f "${cue}" -t %n-%t -o flac "${flac}" && rm "${flac}" && cuetag.sh *.cue "${flac}" && rm *.log 

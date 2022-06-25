@@ -1,6 +1,8 @@
 unlet! skip_defaults_vim
 "source $VIMRUNTIME/defaults.vim
 
+let mapleader=" "
+
 set ignorecase smartcase hlsearch incsearch
 set number relativenumber
 set scrolloff=5
@@ -30,6 +32,16 @@ noremap H ^
 noremap L g_
 noremap <S-j> <C-d>
 noremap <S-k> <C-u>
+
+"toggle spellcheck
+map <silent><leader>o :set spell!<CR>
+"disables automatic commenting on newline
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+"run xrdb whenever Xdefaults or Xresources are updated.
+autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
+autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
+"set specific file interpretation
+autocmd BufRead,BufNewFile ~/.zettgo/* set filetype=markdown
 
 "reopen the file on the same line
 augroup line_return
