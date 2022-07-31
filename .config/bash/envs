@@ -1,5 +1,5 @@
 #!/bin/bash
-#exported env variables sourced in ~/.bashrc
+#exported env variables sourced in ~/.bash_profile
 
 export PATH=$PATH:~/scripts/cmds:~/.local/bin:.
 export GPG_TTY=$(tty)
@@ -23,5 +23,3 @@ export HISTTIMEFORMAT="%F %T "
 export HISTFILE=~/files/logs/bash_history
 export PROMPT_COMMAND="history -a"
 
-#prompt
-export PS1="\[$(tput bold)\]\[\033[38;5;9m\][\[$(tput sgr0)\]\[\033[38;5;214m\]\u\[$(tput sgr0)\]\[\033[38;5;100m\]:\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;61m\]\W\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;9m\]]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# listens for changes in a file (when the content is changed) and triggers a command
+
+if [ "$#" -lt 2 ]; then
+  echo "Not enough arguments"
+  exit
+fi
+
+file="$1"
+shift
+while inotifywait -q -e move_self "$file" &>> ~/files/logs/inotify.log; do 
+  "$@"
+done

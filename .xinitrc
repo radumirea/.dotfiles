@@ -5,7 +5,7 @@ udiskie &               #automounter daemon
 redshift &              #night light
 dunst &	                #osd daemon
 mpd &                   #music player daemon
-~/scripts/resources/screen/default.sh #set screen layout
+autorandr --change      #set screen layout
 synclient TouchpadOff=1	#turn off touchpad
 [[ -z $(pgrep -xU $UID mpdscribble) ]] && mpdscribble &  #last.fm scribbler
 
@@ -19,8 +19,9 @@ wmname LG3D
 xrdb ~/.Xresources
 
 #reload config files on change
-echo ~/.Xresources | entr -p xrdb ~/.Xresources & &>> ~/files/logs/entr.log
-echo ~/.bashrc | entr -p ~/scripts/util/entr/reload_bash.sh & &>> ~/files/logs/entr.log
-ls ~/.config/bash/* | entr -p ~/scripts/util/entr/reload_bash.sh & &>> ~/files/logs/entr.log
+hook_file ~/.Xresources xrdb ~/.Xresources &
+hook_file ~/.bashrc ~/scripts/util/inotify/reload_bash.sh &
+hook_file ~/.bash_profile ~/scripts/util/inotify/reload_bash.sh &
+hook_dir ~/.config/bash/ ~/scripts/util/inotify/reload_bash.sh &
 
 exec ~/scripts/util/dwm/start.sh   #WM script

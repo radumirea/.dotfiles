@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# listens for changes in a directory (create/update/delete) and triggers a command
+
+if [ "$#" -lt 2 ]; then
+  echo "Not enough arguments"
+  exit
+fi
+
+dir="$1"
+shift
+while inotifywait -q -e modify,create,delete "$dir" &>> ~/files/logs/inotify.log; do 
+  "$@"
+done

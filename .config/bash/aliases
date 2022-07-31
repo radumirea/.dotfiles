@@ -8,6 +8,7 @@ alias ls='ls --color=auto'
 alias mktar="tar -cf"
 alias untar="tar -xf"
 alias less="less.sh"
+alias unbr="brave --disable-web-security --user-data-dir='/home/radu/play/tmp'"
 
 #ncmpcpp setup
 alias music='tmux new-session -s $$ "tmux source-file ~/.ncmpcpp/tsession"' 
@@ -22,3 +23,4 @@ function cheat(){ curl cheat.sh/"$@"; }
 
 #misc
 alias tzettgo="~/files/bin/go/bin/zettgo --basedir '~/.zettgo_test/'"
+alias cgobuild='go build -ldflags="-extldflags=-static"'

@@ -1,1 +1,2 @@
+CGO_ENABLED=1
 GOPATH=/home/radu/files/bin/go/
